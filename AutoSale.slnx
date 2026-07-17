@@ -1,1 +1,8 @@
-<Solution />
+<Solution>
+  <Folder Name="/docs/" />
+  <Folder Name="/docs/spec/">
+    <File Path="../../../Desktop/Fase 3 Monitoramento - Matérias e Aula.md" />
+    <File Path="../../../Desktop/Trabalho Sub TechChallenge SOAT - Fase 3.md" />
+    <File Path="D:/Windows/Users/alanc/Downloads/Plano-Desenvolvimento-TechChallenge-Fase3.md" />
+  </Folder>
+</Solution>
