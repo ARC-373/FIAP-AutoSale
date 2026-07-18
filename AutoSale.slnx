@@ -1,8 +1,24 @@
 <Solution>
-  <Folder Name="/docs/" />
-  <Folder Name="/docs/spec/">
-    <File Path="../../../Desktop/Fase 3 Monitoramento - Matérias e Aula.md" />
-    <File Path="../../../Desktop/Trabalho Sub TechChallenge SOAT - Fase 3.md" />
-    <File Path="D:/Windows/Users/alanc/Downloads/Plano-Desenvolvimento-TechChallenge-Fase3.md" />
+  <Folder Name="/docs/">
+    <Folder Name="/docs/spec/">
+      <File Path="docs/spec/Fase 3 Monitoramento - Matérias e Aula.md" />
+      <File Path="docs/spec/Plano-Desenvolvimento-TechChallenge-Fase3.md" />
+      <File Path="docs/spec/Trabalho Sub TechChallenge SOAT - Fase 3.md" />
+    </Folder>
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/AutoSale.Api/AutoSale.Api.csproj" />
+    <Project Path="src/AutoSale.Application/AutoSale.Application.csproj" />
+    <Project Path="src/AutoSale.Domain/AutoSale.Domain.csproj" />
+    <Project Path="src/AutoSale.Infrastructure/AutoSale.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/BuildingBlocks/">
+    <Project Path="src/BuildingBlocks/AutoSale.SharedKernel/AutoSale.SharedKernel.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AutoSale.Api.IntegrationTests/AutoSale.Api.IntegrationTests.csproj" />
+    <Project Path="tests/AutoSale.Application.UnitTests/AutoSale.Application.UnitTests.csproj" />
+    <Project Path="tests/AutoSale.ArchitectureTests/AutoSale.ArchitectureTests.csproj" />
+    <Project Path="tests/AutoSale.Domain.UnitTests/AutoSale.Domain.UnitTests.csproj" />
   </Folder>
 </Solution>
