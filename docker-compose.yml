@@ -11,7 +11,7 @@ services:
       ConnectionStrings__AutoSale: Host=postgres;Port=5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}
       Database__ApplyMigrationsOnStartup: "true"
       Authentication__Authority: ${AUTHORITY}
-      Authentication__Audience: ${AUDIENCE}
+      Authentication__ClientId: ${CLIENT_ID}
       OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4317
       OTEL_SERVICE_NAME: autosale-api
       OTEL_RESOURCE_ATTRIBUTES: deployment.environment=local,service.version=${APP_VERSION}

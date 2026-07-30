@@ -66,7 +66,15 @@ app.UseAuthorization();
 app.MapControllers();
 app.MapHealthChecks("/health").AllowAnonymous();
 app.MapOpenApi();
-app.MapScalarApiReference("/docs");
+
+app.MapScalarApiReference("/docs", options => options
+    .AddPreferredSecuritySchemes("CognitoOAuth")
+    .AddAuthorizationCodeFlow("CognitoOAuth", flow =>
+    {
+        flow.ClientId = builder.Configuration["Authentication:ClientId"];
+        flow.Pkce = Pkce.Sha256;
+        flow.SelectedScopes = ["openid", "profile", "email"];
+    }));
 
 app.Run();
 
