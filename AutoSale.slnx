@@ -6,6 +6,12 @@
       <File Path="docs/spec/Trabalho Sub TechChallenge SOAT - Fase 3.md" />
     </Folder>
   </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".env" />
+    <File Path="docker-compose.yml" />
+    <File Path="otel-collector-config.yaml" />
+    <File Path="README.md" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/AutoSale.Api/AutoSale.Api.csproj" />
     <Project Path="src/AutoSale.Application/AutoSale.Application.csproj" />
