@@ -12,6 +12,8 @@ services:
       Database__ApplyMigrationsOnStartup: "true"
       Authentication__Authority: ${AUTHORITY}
       Authentication__ClientId: ${CLIENT_ID}
+      Authentication__AuthorizationEndpoint: ${AUTHORIZATION_ENDPOINT}
+      Authentication__TokenEndpoint: ${TOKEN_ENDPOINT}
       OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4317
       OTEL_SERVICE_NAME: autosale-api
       OTEL_RESOURCE_ATTRIBUTES: deployment.environment=local,service.version=${APP_VERSION}

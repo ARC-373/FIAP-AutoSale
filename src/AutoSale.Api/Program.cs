@@ -5,6 +5,7 @@ using AutoSale.Api.Middleware;
 using AutoSale.Infrastructure;
 using AutoSale.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
@@ -25,7 +26,35 @@ if (string.IsNullOrWhiteSpace(connectionString))
 
 builder.Services.AddProblemDetails();
 builder.Services.AddControllers();
-builder.Services.AddOpenApi();
+builder.Services.AddOpenApi(options =>
+{
+    options.AddDocumentTransformer((document, _, _) =>
+    {
+        document.Components ??= new OpenApiComponents();
+        document.Components.SecuritySchemes ??= new Dictionary<string, IOpenApiSecurityScheme>();
+        document.Components.SecuritySchemes["CognitoOAuth"] = new OpenApiSecurityScheme
+        {
+            Type = SecuritySchemeType.OAuth2,
+            Description = "Amazon Cognito access token",
+            Flows = new OpenApiOAuthFlows
+            {
+                AuthorizationCode = new OpenApiOAuthFlow
+                {
+                    AuthorizationUrl = new Uri(builder.Configuration["Authentication:AuthorizationEndpoint"]!),
+                    TokenUrl = new Uri(builder.Configuration["Authentication:TokenEndpoint"]!),
+                    Scopes = new Dictionary<string, string>
+                    {
+                        ["openid"] = "OpenID Connect authentication",
+                        ["profile"] = "User profile",
+                        ["email"] = "User email"
+                    }
+                }
+            }
+        };
+
+        return Task.CompletedTask;
+    });
+});
 builder.Services.AddExceptionHandler<ExceptionHandlingMiddleware>();
 builder.Services.AddAutoSaleAuthentication(builder.Configuration, builder.Environment);
 builder.Services.AddAutoSaleAuthorization();
