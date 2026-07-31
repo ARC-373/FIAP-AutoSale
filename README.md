@@ -1,6 +1,6 @@
 # FIAP Auto Sales API
 
-API REST para a plataforma de revenda de veículos do Tech Challenge da FIAP (SOAT — Fase 3). A solução permite que administradores cadastrem e atualizem veículos e que compradores previamente cadastrados no Amazon Cognito consultem o catálogo e finalizem uma compra de forma segura.
+API REST para a plataforma de revenda de veículos do Tech Challenge da FIAP (SOAT Fase 3 Prova Substitutiva). A solução permite que administradores cadastrem e atualizem veículos e que compradores previamente cadastrados no Amazon Cognito consultem o catálogo e finalizem uma compra de forma segura.
 
 ## Índice
 
@@ -100,6 +100,12 @@ AutoSale/
 
 ## Execução local
 
+### Usuários de teste no Cognito
+| Usuário | Senha | Grupo | Observações |
+| --- | --- | --- | --- |
+| `admin.autosale` | `!Fiap2026` | `admins` | Usuário administrador de teste |
+| `buyer.autosale` | `!Fiap2` | -- | Usuário comprador de teste. Outros usuários cadastrados se classificam como compradores. |
+
 ### Pré-requisitos
 
 - [Git](https://git-scm.com/)
@@ -117,7 +123,7 @@ Set-Location FIAP-AutoSale
 docker compose up --build -d
 ```
 
-O arquivo `.env` já contém as configurações locais de portas e as configurações públicas do Cognito. Não inclua *client secret*, tokens ou senhas reais em arquivos versionados.
+O arquivo `.env` já contém as configurações locais de portas e as configurações públicas do Cognito.
 
 O Compose inicia os seguintes serviços:
 
@@ -166,16 +172,14 @@ Com o ambiente em execução, abra <http://localhost:8080/docs/>. A UI do Scalar
 4. Após a autorização, execute o endpoint desejado. Para criar/editar, o usuário autenticado deve pertencer ao grupo `admins` no Cognito.
 
 > **Evidência da autenticação no Scalar**
->
-> _Inserir aqui um print do diálogo de autorização e outro da requisição autenticada para a apresentação do Tech Challenge._
 
-<!--
-![Scalar autenticado](docs/images/scalar-authenticated.png)
--->
+![Scalar inicial](docs/readme/scalar.jpg)
+![Scalar popup login](docs/readme/scalar2.jpg)
+![Scalar autenticado](docs/readme/scalar3.jpg)
 
 ### Alternativa: obter um token no PowerShell
 
-Se o *app client* do Cognito estiver habilitado para o fluxo `USER_PASSWORD_AUTH`, obtenha um *access token* com a AWS CLI instalada e configurada:
+Obtenha um *access token* com a AWS CLI instalada e configurada:
 
 ```powershell
 $clientId = '3kmefe75etgo71ffeblpqbjpn5'
@@ -313,9 +317,3 @@ docker compose logs postgres
 ```
 
 O endpoint `GET /health` verifica a aplicação e o `AutoSaleDbContext`, permitindo que o Compose e o pipeline aguardem a prontidão da API.
-
-## Limites do escopo
-
-Esta API atende aos fluxos obrigatórios do desafio: administração de veículos, listagens ordenadas, compradores registrados em serviço externo e compra consistente. Pagamento real, reserva, estorno, upload de imagens, exclusão de veículos, frontend e relatórios analíticos não fazem parte deste escopo.
-
-Para a entrega acadêmica, o vídeo deve demonstrar: cadastro/login no Cognito, cadastro e edição por administrador, listagens ordenadas, compra autenticada, tentativa de recompra com conflito, infraestrutura Docker e execução bem-sucedida do pipeline.
