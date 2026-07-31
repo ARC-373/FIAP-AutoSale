@@ -104,7 +104,9 @@ AutoSale/
 | Usuário | Senha | Grupo | Observações |
 | --- | --- | --- | --- |
 | `admin.autosale` | `!Fiap2026` | `admins` | Usuário administrador de teste |
-| `buyer.autosale` | `!Fiap2` | -- | Usuário comprador de teste. Outros usuários cadastrados se classificam como compradores. |
+| `buyer.autosale` | `!Fiap2026` | -- | Usuário comprador de teste. |
+
+Outros usuários cadastrados se classificam como compradores.
 
 ### Pré-requisitos
 
